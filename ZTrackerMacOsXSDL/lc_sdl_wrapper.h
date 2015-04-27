@@ -6,7 +6,6 @@
    #define MAXINT     0x7FFFFFFF
 #endif
 
-typedef Uint32 TColor;
 
 class ZTDrawable {
     public:

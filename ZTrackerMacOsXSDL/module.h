@@ -256,9 +256,7 @@ class zt_module {
         instrument *instruments[ZTM_MAX_INSTS];
         int orderlist[ZTM_ORDERLIST_LEN];
 
-#warning ROBERT: UNUSED
-
-//        HANDLE hEditMutex;
+        HANDLE hEditMutex;
 
         unsigned char track_mute[ZTM_MAX_TRACKS];
 

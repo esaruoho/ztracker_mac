@@ -26,24 +26,7 @@
 //#include "SDLMain.h"
 ////#include "sdl_mixer.h"  // this is for audio testing
 
-typedef uint MMRESULT;
-typedef uint UINT;
-typedef uint HANDLE;
-typedef uint DWORD;
-typedef Uint64 __int64;
-
-typedef uint HMIDIOUT;
-typedef uint MIDIOUTCAPS;
-
-typedef char* PSTR, *LPSTR;
-
-typedef const char* LPCTSTR;
-
-typedef struct timecaps_tag {
-    uint wPeriodMin;
-    uint wPeriodMax;
-} TIMECAPS, *PTIMECAPS, *NPTIMECAPS, *LPTIMECAPS;
-
+#include "Typedefs.h"
 
 #define VER_MAJ 0
 #define VER_MIN 98
@@ -95,6 +78,8 @@ extern int PATTERN_EDIT_ROWS;
 //#include "resource.h"            // resource includes for win32 icon
 
 #include "MessageBox.h"
+#include "WaitForSingleObject.h"
+
 #include "fxml.h"
 #include "lc_sdl_wrapper.h"      // libCON wrapper
 #include "zlib_wrapper.h"        // zlib wrapper
@@ -114,93 +99,12 @@ extern int PATTERN_EDIT_ROWS;
 #include "img.h"                 // image loading/scaling
 
 
+extern int lock_mutex(HANDLE hMutex, int timeout);
+extern int unlock_mutex(HANDLE hMutex);
+
 extern ZTConf zt_globals;
 
-class colorset {
-
-public:
-    TColor Background;     // Background of the ztracker "panel"
-    TColor Highlight;      // highlight of the ztracker "panel"
-    TColor Lowlight;       // lowlight of the ztracker "panel"
-    TColor Text;           // text that goes on the zracker "panel" and on muted track names
-    TColor Data;           // text that is used for the info boxes at the top of the screen
-    TColor Black;          // background of the top information boxes
-    TColor EditText;       // text that is in the pattern editor and all other boxes except top info boxes
-    TColor EditBG;         // background of the pattern editor and all other boxes except top info boxes
-    TColor EditBGlow;      // background of pattern editor (lowlight)
-    TColor EditBGhigh;     // background of pattern editor (highlight)
-    TColor Brighttext;     // text that goes above each track when they are not muted
-    TColor SelectedBGLow;  // background of pattern editor (selected not on a lowlight or highlight)
-    TColor SelectedBGHigh; // background of pattern editor (selected ON a lowlight or highlight), also cursor row selected
-    TColor LCDHigh;        // beat display at bottom left corner high color
-    TColor LCDMid;         // beat display at bottom left corner hid color
-    TColor LCDLow;         // beat display at bottom left corner low color
-    TColor CursorRowHigh;  // cursor row on a lowlight or highlight
-    TColor CursorRowLow;   // cursor row not on a lowlight or highlight
-
-    colorset() {
-        setDefaultColors();
-    }
-
-    TColor getColor(Uint8 Red, Uint8 Green, Uint8 Blue) {
-        return (Blue + (Green<<8) + (Red<<16));
-    }
-    
-    TColor get_color_from_hex(char *str, conf *ColorsFile) {
-        unsigned char r,g,b;
-        r = ColorsFile->getcolor(str,0);
-        g = ColorsFile->getcolor(str,1);
-        b = ColorsFile->getcolor(str,2);
-        return getColor(r,g,b);
-    }
-
-    int load(char *file) {
-        conf ColorsFile;
-        if (!ColorsFile.load(file))
-            return 0;
-        Background =     get_color_from_hex("Background",&ColorsFile);
-        Highlight=       get_color_from_hex("Highlight",&ColorsFile);    
-        Lowlight =       get_color_from_hex("Lowlight",&ColorsFile);
-        Text =           get_color_from_hex("Text",&ColorsFile);
-        Black =          get_color_from_hex("Black",&ColorsFile);
-        Data =           get_color_from_hex("Data",&ColorsFile);
-        EditText =       get_color_from_hex("EditText",&ColorsFile);
-        EditBG   =       get_color_from_hex("EditBG",&ColorsFile);
-        EditBGlow =      get_color_from_hex("EditBGlow",&ColorsFile);
-        EditBGhigh =     get_color_from_hex("EditBGhigh",&ColorsFile);
-        Brighttext =     get_color_from_hex("Brighttext",&ColorsFile);
-        SelectedBGLow =  get_color_from_hex("SelectedBGLow",&ColorsFile);
-        SelectedBGHigh = get_color_from_hex("SelectedBGHigh",&ColorsFile);
-        LCDLow =         get_color_from_hex("LCDLow",&ColorsFile);
-        LCDMid =         get_color_from_hex("LCDMid",&ColorsFile);
-        LCDHigh =        get_color_from_hex("LCDHigh",&ColorsFile);
-        CursorRowHigh =  get_color_from_hex("CursorRowHigh",&ColorsFile);
-        CursorRowLow =   get_color_from_hex("CursorRowLow",&ColorsFile);
-        return 1;
-    }
-    
-    void setDefaultColors() {
-        Background =     getColor(0xA4,0x90,0x54);
-        Highlight=       getColor(0xFF,0xDC,0x84);
-        Lowlight =       getColor(0x50,0x44,0x28);
-        Text =           getColor(0x00,0x00,0x00);
-        Black =          getColor(0x00,0x00,0x00);
-        Data =           getColor(0x00,0xFF,0x00);
-        EditText =       getColor(0x80,0x80,0x80);
-        EditBG   =       Black;
-        EditBGlow =      getColor(0x14,0x10,0x0C);
-        EditBGhigh =     getColor(0x20,0x20,0x14);
-        Brighttext =     getColor(0xcf,0xcf,0xcf);
-        SelectedBGLow =  getColor(0x00,0x00,0x80);
-        SelectedBGHigh = getColor(0x00,0x00,0xA8);
-        LCDLow =         getColor(0x60,0x00,0x00);
-        LCDMid =         getColor(0xA0,0x00,0x00);
-        LCDHigh =        getColor(0xFF,0x00,0x00);
-        CursorRowHigh =  getColor(0x20,0x20,0x20);
-        CursorRowLow =   getColor(0x10,0x10,0x10);
-    }
-
-} ;
+#include "ColorSet.h"
 
 #include "skins.h"
 
@@ -219,96 +123,8 @@ enum state { STATE_PEDIT, STATE_IEDIT, STATE_PLAY, STATE_LOGO,
 
 #define MAX_UPDATE_RECTS 512
 
-class CScreenUpdateManager {
-    public: 
-        SDL_Rect r[MAX_UPDATE_RECTS];
-        int updated_rects;
-        bool update_all;
-
-        CScreenUpdateManager() {
-            updated_rects = 0;
-            update_all = false;
-        }
-        ~CScreenUpdateManager() {
-        }
-        void Update(Sint16 x1, Sint16 y1, Sint16 x2, Sint16 y2) {
-            if (update_all) return;
-            if (updated_rects < MAX_UPDATE_RECTS-1) {
-                if (x1<0) x1=0; if (y1<0) y1=0;
-                if (x2>CONSOLE_WIDTH-1) x2 = CONSOLE_WIDTH-1;
-                if (y2>CONSOLE_HEIGHT-1) y2 = CONSOLE_HEIGHT-1;
-                r[updated_rects].x = x1;
-                r[updated_rects].y = y1;
-                r[updated_rects].w = x2-x1;
-                r[updated_rects].h = y2-y1;
-                int i = updated_rects;
-//                if (r[i].x<0 || r[i].y<0 || r[i].x>CONSOLE_WIDTH-1 || r[i].y>CONSOLE_HEIGHT-1)
-//                    SDL_Delay(1);
-                updated_rects++;
-            }
-        }
-        void UpdateWH(Sint16 x1, Sint16 y1, Uint16 w, Uint16 h) {
-            if (update_all) return;
-            if (updated_rects < MAX_UPDATE_RECTS-1) {
-                r[updated_rects].x = x1;
-                r[updated_rects].y = y1;
-                r[updated_rects].w = w;
-                r[updated_rects].h = h;
-            /*
-                int i = updated_rects;
-    
-                if (r[i].x<0 || r[i].y<0 || r[i].x>CONSOLE_WIDTH-1 || r[i].y>CONSOLE_HEIGHT-1)
-                    SDL_Delay(1);               
-            */
-                updated_rects++;
-            }
-        }
-        void UpdateAll(void) {
-            update_all = true;
-        }
-        void Reset(void) {
-            updated_rects = 0;
-        }
-        void Refresh(ZTDrawable *S) {
-            if (update_all) {
-                SDL_UpdateRect(S->surface,0,0,0,0);
-                update_all = false;
-                updated_rects = 0;
-            } else
-            if (updated_rects > 0) {
-#ifdef DEBUG_SCREENMANAGER
-                for (int i=0;i < updated_rects; i++)
-                    SDL_FillRect(S->surface,&r[i], rand() );
-#endif
-                /*
-                for (int i=0;i<updated_rects;i++)
-                    if (r[i].x<0 || r[i].y<0 || r[i].x>CONSOLE_WIDTH-1 || r[i].y>CONSOLE_HEIGHT-1)
-                        SDL_Delay(1);
-                    */
-                SDL_UpdateRects(S->surface, updated_rects, &r[0]);
-                updated_rects = 0;
-            }
-        }
-        bool NeedRefresh(void) {
-            return (updated_rects > 0);
-        }
-};
-
-extern CScreenUpdateManager screenmanager;
-
-class CClipboard {
-    public:
-        event *event_list[MAX_TRACKS];
-        int tracks;
-        int rows;
-        int full;
-
-        CClipboard();
-        ~CClipboard();
-        void copy(void);
-        void paste(int start_track, int start_row, int mode); // 0 = insert, 1 = overwrite, 2 = merge
-        void clear(void);
-};
+#include "CScreenUpdateManager.h"
+#include "CClipboard.h"
 
 class WStackNode {
     public:
@@ -319,20 +135,7 @@ class WStackNode {
         ~WStackNode();
 };
 
-class WStack {  // The window stack.. used for showing popup windows
-    private:
-        WStackNode *head;
-    public:
-        WStack();
-        ~WStack();
-        void push(CUI_Page *p);
-        CUI_Page *pop(void);
-        void update(void);
-        void draw(ZTDrawable *S);
-        bool isempty(void);
-};
-
-extern WStack window_stack;
+#include "WStack.h"
 
 typedef struct {
     unsigned char r;

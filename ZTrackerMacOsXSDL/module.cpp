@@ -170,20 +170,27 @@ void track::reset(void) {
     pitch_setting = 0x2000;
     pitch_slide=0;
 }
-void track::del_event(unsigned short int row, int needlock) {
-    event *e,*e2;
-    if (event_list) {
-        if (needlock)
-#warning ROBERT TODO
-//            lock_mutex(song->hEditMutex,EDIT_LOCK_TIMEOUT);
 
-        if (event_list->row == row) {
+void track::del_event(unsigned short int row, int needlock)
+{
+    event *e,*e2;
+    
+    if (event_list)
+    {
+        if (needlock)
+            lock_mutex(song->hEditMutex,EDIT_LOCK_TIMEOUT);
+
+        if (event_list->row == row)
+        {
             e = (event *)event_list->next_event;
             delete event_list;
             event_list = e;
             file_changed++;
-        } else {
-            if (e=get_next_event(row)) {
+        }
+        else
+        {
+            if (e = get_next_event(row))
+            {
                 e2 = (event *)e->next_event;
                 e->next_event = e2->next_event;
                 delete e2;
@@ -191,10 +198,8 @@ void track::del_event(unsigned short int row, int needlock) {
             }
         }
         
-#warning ROBERT TODO
-        
-//        if (needlock)
-//            unlock_mutex(song->hEditMutex);
+        if (needlock)
+            unlock_mutex(song->hEditMutex);
     }
 }
 
@@ -202,35 +207,44 @@ void track::del_event(unsigned short int row, int needlock) {
 void track::ins_row(unsigned short int which) {
     event *e,*deleted=NULL,*n=NULL;
 
-#warning ROBERT TODO
-
-//    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
-
+    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT))
+    {
         e = get_event(length-1);
-        if (e) {
+        
+        if (e)
+        {
             n = (event *)e->next_event;
+            
             deleted = e;
+            
             delete e;
         }
+        
         e = event_list;
-        if (e == deleted) { 
+        
+        if (e == deleted)
+        {
             e = event_list = n;
         }
-        while(e) {
+        
+        while(e)
+        {
             if (e->row>=which)
                 e->row++;
-            if (deleted) {
+            
+            if (deleted)
+            {
                 if (e->next_event == deleted)
                     e->next_event = n;
             }
+            
             e = (event *)e->next_event;
         }
+        
         file_changed++;
-    
-#warning ROBERT TODO
-    
-//        unlock_mutex(song->hEditMutex);
-//    }
+        
+        unlock_mutex(song->hEditMutex);
+    }
 }
 
 
@@ -238,11 +252,8 @@ void track::update_event(unsigned short int row, int note, int inst, int vol, in
     event *e;
     int a;
 
-#warning ROBERT TODO
-
-    //    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
+    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
     
-
         if (e = get_event(row))
             a=0;
         else {
@@ -275,10 +286,8 @@ void track::update_event(unsigned short int row, int note, int inst, int vol, in
         }
         file_changed++;
     
-#warning ROBERT TODO
-    
-//        unlock_mutex(song->hEditMutex);
-//    }
+        unlock_mutex(song->hEditMutex);
+    }
 }
 
 
@@ -286,10 +295,8 @@ void track::update_event_safe(unsigned short int row, int note, int inst, int vo
     event *e;
     int a;
     
-#warning ROBERT TODO
-    
-//    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
-//
+    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
+
         if (row>=this->length) row=this->length-1;
 
         if (e = get_event(row))
@@ -328,10 +335,8 @@ void track::update_event_safe(unsigned short int row, int note, int inst, int vo
         }
         file_changed++;
     
-#warning ROBERT TODO
-    
-//        unlock_mutex(song->hEditMutex);
-//    }
+        unlock_mutex(song->hEditMutex);
+    }
 }
 
 
@@ -345,9 +350,7 @@ void track::update_event(unsigned short int row, event *src) {
     event *e;
     int a;
 
-#warning ROBERT TODO
-
-//    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
+    if (lock_mutex(song->hEditMutex, EDIT_LOCK_TIMEOUT)) {
     
 
         if (e = get_event(row))
@@ -382,10 +385,8 @@ void track::update_event(unsigned short int row, event *src) {
         }
         file_changed++;
     
-#warning ROBERT TODO
-    
-//        unlock_mutex(song->hEditMutex);
-//    }
+        unlock_mutex(song->hEditMutex);
+    }
 }
 
 void track::del_row(unsigned short int which) {
