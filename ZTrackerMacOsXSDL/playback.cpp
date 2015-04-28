@@ -81,26 +81,47 @@ void CALLBACK player_callback(UINT wTimerID, UINT msg, DWORD dwUser, DWORD dw1, 
 } 
 
 void counter_thread(void) {
-#warning ROBERT TODO
 
-//
-//    int buf;
-//    SetThreadPriority(GetCurrentThread(),THREAD_PRIORITY_TIME_CRITICAL );
-//    while(1) {
-//         if (ztPlayer && ztPlayer->playing) {
-//            buf = ztPlayer->cur_buf; 
-//            if (buf) buf=0; else buf=1;
-//            if (ztPlayer->play_buffer[buf]->ready_to_play == 0) {
-//                ztPlayer->playback(ztPlayer->play_buffer[buf],ztPlayer->prebuffer);
-//                if (buf) buf=0; else buf=1;
-//            }
-//        }
-//        SDL_Delay(1);
-//    }
-
+    int buf;
+    
+    SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
+    
+    while(1)
+    {
+         if (ztPlayer && ztPlayer->playing)
+         {
+            buf = ztPlayer->cur_buf;
+             
+            if (buf)
+            {
+                buf=0;
+            }
+            else
+            {
+                buf=1;
+            }
+             
+            if (ztPlayer->play_buffer[buf]->ready_to_play == 0)
+            {
+                ztPlayer->playback(ztPlayer->play_buffer[buf],ztPlayer->prebuffer);
+                
+                if (buf)
+                {
+                    buf=0;
+                }
+                else
+                {
+                    buf=1;
+                }
+            }
+        }
+        
+        SDL_Delay(1);
+    }
 }
 
-midi_buf::midi_buf() {
+midi_buf::midi_buf()
+{
     this->event_buffer = new midi_event[4512]; //4512
     this->ready_to_play = 0;
     this->event_cursor = this->listhead = 0;
@@ -108,30 +129,43 @@ midi_buf::midi_buf() {
     maxsize = 0;
 }
 
-midi_buf::~midi_buf() {
+midi_buf::~midi_buf()
+{
     delete[] this->event_buffer;
+    
     this->reset();
 }
-void midi_buf::reset() {
+
+void midi_buf::reset()
+{
     this->event_cursor = this->listhead = 0;
     this->ready_to_play = 0;
     this->size = 0;
 }
 
-void midi_buf::rollback_cursor() {
+void midi_buf::rollback_cursor()
+{
     this->event_cursor = 0;
 }
 
-midi_event *midi_buf::get_next_event(void) {
+midi_event *midi_buf::get_next_event(void)
+{
     midi_event *ret;
+    
     if (event_cursor >= listhead)
+    {
         return NULL;
+    }
+    
     ret = &event_buffer[event_cursor++];
+    
     this->size--;
+    
     return ret;
 }
 
-void midi_buf::insert(midi_event *e) {
+void midi_buf::insert(midi_event *e)
+{
     this->insert( e->tick,
             e->type,
             e->device,
@@ -186,65 +220,80 @@ player::player(int res,int prebuffer_rows, zt_module *ztm) {
     prebuffer = (96/song->tpb) * prebuffer_rows; // 96ppqn, so look ahead is 1 beat
     
 }   
-player::~player(void) {
-#warning ROBERT TODO
-//    
-//    //this->edit_lock = 0;
-//    unlock_mutex(song->hEditMutex);
-//    this->stop_timer();
-////  delete this->hr_timer;
-//    this->wTimerID = 0;
-//    delete this->play_buffer[1];
-//    delete this->play_buffer[0];
-//    delete[] this->noteoff_eventlist;
+player::~player(void)
+{
+    
+    //this->edit_lock = 0;
+    unlock_mutex(song->hEditMutex);
+    
+    this->stop_timer();
+    
+//  delete this->hr_timer;
+    
+    this->wTimerID = 0;
+    
+    delete this->play_buffer[1];
+    delete this->play_buffer[0];
+    
+    delete[] this->noteoff_eventlist;
 }
 
 UINT player::SetTimerCallback(UINT msInterval)
 {
-#warning ROBERT TODO
+    wTimerID = timeSetEvent(msInterval, TARGET_RESOLUTION, player_callback, 0x0, TIME_PERIODIC);
     
-//    
-//    wTimerID = timeSetEvent(msInterval,TARGET_RESOLUTION,player_callback,0x0,TIME_PERIODIC);
-//    if(!wTimerID)
-//        return -1;
-//    else
+    if(!wTimerID)
+    {
+        return -1;
+    }
+    else
         return 0;
 } 
 
 int player::start_timer(void)
 {
-#warning ROBERT TODO
-//    
-//    SetTimerCallback(wTimerRes);
-//    hThread = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)counter_thread,NULL,0,&iID);
+    SetTimerCallback(wTimerRes);
+    
+    hThread = CreateThread(NULL,0, (LPTHREAD_START_ROUTINE)counter_thread, NULL, 0, &iID);
+    
     return 0;
 }
+
 int player::stop_timer(void)
 {
-#warning ROBERT TODO
-
-//    if (wTimerID)
-//        timeKillEvent(wTimerID);
-//    TerminateThread(hThread,0);
-//    clear_noel();
+    if (wTimerID)
+    {
+        timeKillEvent(wTimerID);
+    }
+    
+    TerminateThread(hThread, 0);
+    
+    clear_noel();
+    
     return 0;
 }
 
-int player::init(void) {
-#warning ROBERT TODO
+int player::init(void)
+{
+    if (timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR)
+    {
+        return -1;
+    }
     
-//    if (timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR) 
-//        return -1;
-//    wTimerRes = min(max(tc.wPeriodMin, wTimerRes), tc.wPeriodMax);
-//    timeBeginPeriod(wTimerRes); 
-//    cur_row = 0;
-//    cur_pattern = 0;
-//    playmode = 0; //loop
-//    this->tpb = song->tpb;
-//    this->bpm = song->bpm;
-//    set_speed();
-//    start_timer();
-////    SetThreadPriority(GetCurrentThread(),THREAD_PRIORITY_HIGHEST );
+    wTimerRes = MIN(MAX(tc.wPeriodMin, wTimerRes), tc.wPeriodMax);
+    
+    timeBeginPeriod(wTimerRes);
+    
+    cur_row = 0;
+    cur_pattern = 0;
+    playmode = 0; //loop
+    this->tpb = song->tpb;
+    this->bpm = song->bpm;
+    set_speed();
+    start_timer();
+    
+//    SetThreadPriority(GetCurrentThread(),THREAD_PRIORITY_HIGHEST );
+    
     return 0;
 }
 

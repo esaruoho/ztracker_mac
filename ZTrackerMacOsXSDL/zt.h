@@ -74,14 +74,17 @@ extern int PATTERN_EDIT_ROWS;
 #define MAX_TRACKS 64 // Max # of tracks
 #define MAX_INSTS 100 // Max # of instruments
 
+#define MIN(x, y) (x < y ? x : y)
+#define MAX(x, y) (x > y ? x : y)
 
 //#include "resource.h"            // resource includes for win32 icon
 
 extern int lock_mutex(HANDLE hMutex, int timeout);
 extern int unlock_mutex(HANDLE hMutex);
 
-#include "MessageBox.h"
-#include "WaitForSingleObject.h"
+#include "WindowsMessageBox.h"
+#include "WindowsTimer.h"
+#include "WindowsThreading.h"
 
 #include "fxml.h"
 #include "lc_sdl_wrapper.h"      // libCON wrapper

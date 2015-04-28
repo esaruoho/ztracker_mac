@@ -7,7 +7,7 @@
 //
 
 #include "zt.h"
-#include "MessageBox.h"
+#include "WindowsMessageBox.h"
 
 //_In_opt_  HWND hWnd,
 //_In_opt_  LPCTSTR lpText,
