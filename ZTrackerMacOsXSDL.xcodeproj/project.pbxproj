@@ -97,6 +97,8 @@
 		E1BA0C5D1AEEEBC20071AE4B /* CClipboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C5C1AEEEBC20071AE4B /* CClipboard.cpp */; };
 		E1BA0C601AEEEBFC0071AE4B /* WStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C5E1AEEEBFC0071AE4B /* WStack.cpp */; };
 		E1BA0C641AEEEC6D0071AE4B /* WaitForSingleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C621AEEEC6C0071AE4B /* WaitForSingleObject.cpp */; };
+		E1CD31971AEEEF5400502FA6 /* WindowsTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1CD31951AEEEF5400502FA6 /* WindowsTimer.cpp */; };
+		E1EB28C61AEFE94F0000703A /* prerequisites.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1EB28C51AEFE94F0000703A /* prerequisites.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -239,6 +241,9 @@
 		E1BA0C5F1AEEEBFC0071AE4B /* WStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WStack.h; sourceTree = "<group>"; };
 		E1BA0C621AEEEC6C0071AE4B /* WaitForSingleObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaitForSingleObject.cpp; sourceTree = "<group>"; };
 		E1BA0C631AEEEC6D0071AE4B /* WaitForSingleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitForSingleObject.h; sourceTree = "<group>"; };
+		E1CD31951AEEEF5400502FA6 /* WindowsTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowsTimer.cpp; sourceTree = "<group>"; };
+		E1CD31961AEEEF5400502FA6 /* WindowsTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsTimer.h; sourceTree = "<group>"; };
+		E1EB28C51AEFE94F0000703A /* prerequisites.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prerequisites.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,9 +312,8 @@
 		E1235CA11AB39AEB001E3E74 = {
 			isa = PBXGroup;
 			children = (
+				E1EB28C51AEFE94F0000703A /* prerequisites.txt */,
 				E150C5B61ADC66EA0048900C /* Data */,
-				E10BE9901ADC6092007D2DD7 /* libpng15.dylib */,
-				E10BE98E1ADC607E007D2DD7 /* libpng15.a */,
 				E1235CAC1AB39AEB001E3E74 /* ZTrackerMacOsXSDL */,
 				E1235CAB1AB39AEB001E3E74 /* Products */,
 			);
@@ -327,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				E150C5B81ADC67010048900C /* Source */,
+				E1EB28C41AEFE8F10000703A /* Libs */,
 				E150C5B71ADC66F80048900C /* Frameworks */,
 			);
 			path = ZTrackerMacOsXSDL;
@@ -493,8 +498,20 @@
 				E1BA0C541AEEE5920071AE4B /* MessageBox.h */,
 				E1BA0C621AEEEC6C0071AE4B /* WaitForSingleObject.cpp */,
 				E1BA0C631AEEEC6D0071AE4B /* WaitForSingleObject.h */,
+				E1CD31951AEEEF5400502FA6 /* WindowsTimer.cpp */,
+				E1CD31961AEEEF5400502FA6 /* WindowsTimer.h */,
 			);
 			name = "Windows Wrappers";
+			sourceTree = "<group>";
+		};
+		E1EB28C41AEFE8F10000703A /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				E10BE9901ADC6092007D2DD7 /* libpng15.dylib */,
+				E10BE98E1ADC607E007D2DD7 /* libpng15.a */,
+			);
+			name = Libs;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,6 +590,7 @@
 				E150C5DB1ADC67410048900C /* font.fnt in Resources */,
 				E150C5EA1ADC67410048900C /* save.png in Resources */,
 				E150C5D81ADC67410048900C /* about.png in Resources */,
+				E1EB28C61AEFE94F0000703A /* prerequisites.txt in Resources */,
 				E150C5E81ADC67410048900C /* load.png in Resources */,
 				E150C5DE1ADC67410048900C /* save.png in Resources */,
 				E150C5EC1ADC67410048900C /* buttons.psd in Resources */,
@@ -601,6 +619,7 @@
 				E1225D0A1AB3AA27004AB741 /* list.cpp in Sources */,
 				E1225D071AB3AA27004AB741 /* it.cpp in Sources */,
 				E1225CD21AB3A809004AB741 /* CUI_Arpeggioeditor.cpp in Sources */,
+				E1CD31971AEEEF5400502FA6 /* WindowsTimer.cpp in Sources */,
 				E1225D081AB3AA27004AB741 /* keybuffer.cpp in Sources */,
 				E1BA0C581AEEEA570071AE4B /* ColorSet.cpp in Sources */,
 				E1225CE51AB3A9BA004AB741 /* CUI_SongMessage.cpp in Sources */,
@@ -746,7 +765,7 @@
 					"-lpng15",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -773,7 +792,7 @@
 					"-lpng15",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

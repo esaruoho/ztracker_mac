@@ -77,6 +77,9 @@ extern int PATTERN_EDIT_ROWS;
 
 //#include "resource.h"            // resource includes for win32 icon
 
+extern int lock_mutex(HANDLE hMutex, int timeout);
+extern int unlock_mutex(HANDLE hMutex);
+
 #include "MessageBox.h"
 #include "WaitForSingleObject.h"
 
@@ -99,8 +102,6 @@ extern int PATTERN_EDIT_ROWS;
 #include "img.h"                 // image loading/scaling
 
 
-extern int lock_mutex(HANDLE hMutex, int timeout);
-extern int unlock_mutex(HANDLE hMutex);
 
 extern ZTConf zt_globals;
 
