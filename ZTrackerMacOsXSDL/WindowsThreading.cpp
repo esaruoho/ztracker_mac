@@ -44,3 +44,35 @@ DWORD WaitForSingleObject(HANDLE handle, DWORD milliseconds)
 
     return 0;
 }
+
+// https://msdn.microsoft.com/en-us/library/windows/desktop/ms682453%28v=vs.85%29.aspx
+//
+// HANDLE WINAPI CreateThread(
+//                           _In_opt_   LPSECURITY_ATTRIBUTES lpThreadAttributes,
+//                           _In_       SIZE_T dwStackSize,
+//                           _In_       LPTHREAD_START_ROUTINE lpStartAddress,
+//                           _In_opt_   LPVOID lpParameter,
+//                           _In_       DWORD dwCreationFlags,
+//                           _Out_opt_  LPDWORD lpThreadId
+//                           );
+
+HANDLE CreateThread(DWORD attributes, DWORD size, void *startAddress, void *parameter, DWORD creationFLags, DWORD *threadId)
+{
+#warning TODO
+
+    return 0;
+}
+
+// https://msdn.microsoft.com/en-us/library/windows/desktop/ms686717%28v=vs.85%29.aspx
+//
+// BOOL WINAPI TerminateThread(
+//                            _Inout_  HANDLE hThread,
+//                            _In_     DWORD dwExitCode
+//                            );
+
+bool TerminateThread(HANDLE thread, DWORD exitCode)
+{
+#warning TODO
+    
+    return true;
+}

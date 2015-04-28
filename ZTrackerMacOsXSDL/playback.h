@@ -110,7 +110,7 @@ class player {
         int tpb, bpm, starts;
 
         HANDLE hThread;
-        unsigned long iID;
+        DWORD iID;
 
 //      hires_timer *hr_timer;
 

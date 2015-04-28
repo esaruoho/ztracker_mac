@@ -240,7 +240,7 @@ player::~player(void)
 
 UINT player::SetTimerCallback(UINT msInterval)
 {
-    wTimerID = timeSetEvent(msInterval, TARGET_RESOLUTION, player_callback, 0x0, TIME_PERIODIC);
+    wTimerID = timeSetEvent(msInterval, TARGET_RESOLUTION, (void *)player_callback, 0x0, TIME_PERIODIC);
     
     if(!wTimerID)
     {
@@ -254,7 +254,7 @@ int player::start_timer(void)
 {
     SetTimerCallback(wTimerRes);
     
-    hThread = CreateThread(NULL,0, (LPTHREAD_START_ROUTINE)counter_thread, NULL, 0, &iID);
+    hThread = CreateThread(NULL, 0, (void *)counter_thread, NULL, 0, &iID);
     
     return 0;
 }
@@ -275,10 +275,10 @@ int player::stop_timer(void)
 
 int player::init(void)
 {
-    if (timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR)
-    {
-        return -1;
-    }
+//    if (timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR)
+//    {
+//        return -1;
+//    }
     
     wTimerRes = MIN(MAX(tc.wPeriodMin, wTimerRes), tc.wPeriodMax);
     
@@ -297,23 +297,28 @@ int player::init(void)
     return 0;
 }
 
-void player::set_speed() {
-//int t,int b) {
-    __int64 a;
-//  tpb = t; bpm = b;
-    a = 1000000 / wTimerRes;
-    subtick_len_ms = (int)(60 * a /(96*this->bpm));
-    subtick_len_mms = subtick_len_ms % 1000;
-    subtick_len_ms -= subtick_len_mms;
-    subtick_error = subtick_len_mms;
-    if (subtick_error > 500)
-        subtick_add = 1000;
-    else
-        subtick_add = 0;
-    clock_len_ms = 4;
-    tick_len_ms = 96 / this->tpb;
+void player::set_speed()
+{
+#warning TODO
+    
+////int t,int b) {
+//    __int64 a;
+////  tpb = t; bpm = b;
+//    a = 1000000 / wTimerRes;
+//    subtick_len_ms = (int)(60 * a /(96*this->bpm));
+//    subtick_len_mms = subtick_len_ms % 1000;
+//    subtick_len_ms -= subtick_len_mms;
+//    subtick_error = subtick_len_mms;
+//    if (subtick_error > 500)
+//        subtick_add = 1000;
+//    else
+//        subtick_add = 0;
+//    clock_len_ms = 4;
+//    tick_len_ms = 96 / this->tpb;
 }
-int player::seek_order(int pattern) {
+
+int player::seek_order(int pattern)
+{
     int o;
     for (o=0;o<256;o++)
         if (song->orderlist[o] == pattern)
