@@ -42,47 +42,64 @@
 
 int needaclear = 0;
 
-void dev_sel(int dev, MidiOutDeviceSelector *mds ) {
+void dev_sel(int dev, MidiOutDeviceSelector *mds )
+{
     LBNode *p = mds->getNode(dev);
-    if (p) {
+    
+    if (p)
+    {
         dev = mds->findItem(p->caption);
-        if (dev < MidiOut->GetNumOpenDevs()) 
+        
+        if (dev < MidiOut->GetNumOpenDevs())
+        {
             song->instruments[cur_inst]->midi_device = MidiOut->GetDevID(dev);
+        }
     }
 }
 
-void midi_out_sel(int dev) {
-#warning ROBERT TODO
-//    int a;
-//    char *errmsg;
-//    if ((unsigned int)dev < MidiOut->numOuputDevices) {
-//        if (MidiOut->QueryDevice(dev)) {
-//            MidiOut->RemDevice(dev);
-//            sprintf(szStatmsg,"Closed[out]: %s",(MidiOut->outputDevices[dev]->alias != NULL)?MidiOut->outputDevices[dev]->alias:MidiOut->outputDevices[dev]->szName);
-//        } else {
-//            if (a = MidiOut->AddDevice(dev)) {
-//                switch(a) {
-//                case MIDIERR_NODEVICE:
-//                    errmsg = "No device (mapper open?)";
-//                    break;
-//                case MMSYSERR_NOMEM:
-//                    errmsg = "Out of memory (reboot)";
-//                    break;
-//                case MMSYSERR_ALLOCATED:
-//                    errmsg = "Device busy";
-//                    break;
-//                default:
-//                    errmsg = "Unknown error";
-//                    break;
-//                }
-//                sprintf(szStatmsg,"Could not open %s (%d: %s)",(MidiOut->outputDevices[dev]->alias != NULL)?MidiOut->outputDevices[dev]->alias:MidiOut->outputDevices[dev]->szName,a,errmsg);
-//                statusmsg = szStatmsg;
-//                status_change = 1;
-//            } else {
-//                sprintf(szStatmsg,"Opened[out]: %s",(MidiOut->outputDevices[dev]->alias != NULL)?MidiOut->outputDevices[dev]->alias:MidiOut->outputDevices[dev]->szName);
-//            }
-//        }
-//    }
+void midi_out_sel(int dev)
+{
+    int a;
+    char *errmsg;
+    
+    if ((unsigned int)dev < MidiOut->numOuputDevices)
+    {
+        if (MidiOut->QueryDevice(dev))
+        {
+            MidiOut->RemDevice(dev);
+            
+            sprintf(szStatmsg,"Closed[out]: %s",(MidiOut->outputDevices[dev]->alias != NULL)?MidiOut->outputDevices[dev]->alias:MidiOut->outputDevices[dev]->szName);
+        }
+        else
+        {
+            if (a = MidiOut->AddDevice(dev))
+            {
+                switch(a)
+                {
+                    case MIDIERR_NODEVICE:
+                        errmsg = "No device (mapper open?)";
+                        break;
+                    case MMSYSERR_NOMEM:
+                        errmsg = "Out of memory (reboot)";
+                        break;
+                    case MMSYSERR_ALLOCATED:
+                        errmsg = "Device busy";
+                        break;
+                    default:
+                        errmsg = "Unknown error";
+                        break;
+                }
+                
+                sprintf(szStatmsg,"Could not open %s (%d: %s)",(MidiOut->outputDevices[dev]->alias != NULL)?MidiOut->outputDevices[dev]->alias:MidiOut->outputDevices[dev]->szName,a,errmsg);
+                statusmsg = szStatmsg;
+                status_change = 1;
+            }
+            else
+            {
+                sprintf(szStatmsg,"Opened[out]: %s",(MidiOut->outputDevices[dev]->alias != NULL)?MidiOut->outputDevices[dev]->alias:MidiOut->outputDevices[dev]->szName);
+            }
+        }
+    }
 }
 
 void midi_in_sel(int dev) {
@@ -3572,7 +3589,8 @@ void MidiOutDeviceOpener::enter(void) {
     OnChange();
 }
 
-void MidiOutDeviceOpener::OnChange() {
+void MidiOutDeviceOpener::OnChange()
+{
     clear();        
     for (unsigned int i=0;i<MidiOut->numOuputDevices;i++) {
 //        LBNode *p = insertItem((MidiOut->outputDevices[i]->alias != NULL)?MidiOut->outputDevices[i]->alias:MidiOut->outputDevices[i]->szName);
@@ -3584,7 +3602,9 @@ void MidiOutDeviceOpener::OnChange() {
         p->int_data = i;
     }
 }
-void MidiOutDeviceOpener::OnSelect(LBNode *selected) {
+
+void MidiOutDeviceOpener::OnSelect(LBNode *selected)
+{
     midi_out_sel(selected->int_data);
     if (MidiOut->QueryDevice(selected->int_data))
         selected->checked = true;
@@ -3595,6 +3615,7 @@ void MidiOutDeviceOpener::OnSelect(LBNode *selected) {
     ListBox::OnSelect(selected);
     Keys.flush();
 }
+
 void MidiOutDeviceOpener::OnSelectChange() {
 }
 int MidiOutDeviceOpener::mouseupdate(int cur_element) {

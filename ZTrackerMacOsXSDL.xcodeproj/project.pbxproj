@@ -92,11 +92,13 @@
 		E150C5F71ADC67570048900C /* logo.png in Copy Files */ = {isa = PBXBuildFile; fileRef = E150C5C01ADC67410048900C /* logo.png */; };
 		E150C5F81ADC67570048900C /* save.png in Copy Files */ = {isa = PBXBuildFile; fileRef = E150C5C11ADC67410048900C /* save.png */; };
 		E150C5F91ADC67590048900C /* toolbar.png in Copy Files */ = {isa = PBXBuildFile; fileRef = E150C5C71ADC67410048900C /* toolbar.png */; };
+		E19E63D61AF0400500B1DC2F /* WindowsMidi.mm in Sources */ = {isa = PBXBuildFile; fileRef = E19E63D41AF0400500B1DC2F /* WindowsMidi.mm */; };
 		E1BA0C551AEEE5920071AE4B /* WindowsMessageBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C531AEEE5920071AE4B /* WindowsMessageBox.cpp */; };
 		E1BA0C581AEEEA570071AE4B /* ColorSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C561AEEEA570071AE4B /* ColorSet.cpp */; };
 		E1BA0C5D1AEEEBC20071AE4B /* CClipboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C5C1AEEEBC20071AE4B /* CClipboard.cpp */; };
 		E1BA0C601AEEEBFC0071AE4B /* WStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1BA0C5E1AEEEBFC0071AE4B /* WStack.cpp */; };
 		E1CD31971AEEEF5400502FA6 /* WindowsTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1CD31951AEEEF5400502FA6 /* WindowsTimer.cpp */; };
+		E1DA86411AF17F1F005FE189 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1DA86401AF17F1F005FE189 /* CoreMIDI.framework */; };
 		E1EB28C61AEFE94F0000703A /* prerequisites.txt in Resources */ = {isa = PBXBuildFile; fileRef = E1EB28C51AEFE94F0000703A /* prerequisites.txt */; };
 		E1EB28C91AEFEFCE0000703A /* WindowsThreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1EB28C71AEFEFCE0000703A /* WindowsThreading.cpp */; };
 /* End PBXBuildFile section */
@@ -229,6 +231,8 @@
 		E150C5D51ADC67410048900C /* save.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = save.psd; sourceTree = "<group>"; };
 		E150C5D61ADC67410048900C /* toolbar.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = toolbar.psd; sourceTree = "<group>"; };
 		E150C5D71ADC67410048900C /* toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar.png; sourceTree = "<group>"; };
+		E19E63D41AF0400500B1DC2F /* WindowsMidi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WindowsMidi.mm; sourceTree = "<group>"; };
+		E19E63D51AF0400500B1DC2F /* WindowsMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsMidi.h; sourceTree = "<group>"; };
 		E1BA0C531AEEE5920071AE4B /* WindowsMessageBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowsMessageBox.cpp; sourceTree = "<group>"; };
 		E1BA0C541AEEE5920071AE4B /* WindowsMessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsMessageBox.h; sourceTree = "<group>"; };
 		E1BA0C561AEEEA570071AE4B /* ColorSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorSet.cpp; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 		E1BA0C5F1AEEEBFC0071AE4B /* WStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WStack.h; sourceTree = "<group>"; };
 		E1CD31951AEEEF5400502FA6 /* WindowsTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowsTimer.cpp; sourceTree = "<group>"; };
 		E1CD31961AEEEF5400502FA6 /* WindowsTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsTimer.h; sourceTree = "<group>"; };
+		E1DA86401AF17F1F005FE189 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		E1EB28C51AEFE94F0000703A /* prerequisites.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prerequisites.txt; sourceTree = "<group>"; };
 		E1EB28C71AEFEFCE0000703A /* WindowsThreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowsThreading.cpp; sourceTree = "<group>"; };
 		E1EB28C81AEFEFCE0000703A /* WindowsThreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsThreading.h; sourceTree = "<group>"; };
@@ -251,6 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1DA86411AF17F1F005FE189 /* CoreMIDI.framework in Frameworks */,
 				E10BE9951ADC6253007D2DD7 /* SDL.framework in Frameworks */,
 				E10BE98F1ADC607E007D2DD7 /* libpng15.a in Frameworks */,
 			);
@@ -312,6 +318,7 @@
 		E1235CA11AB39AEB001E3E74 = {
 			isa = PBXGroup;
 			children = (
+				E1DA86401AF17F1F005FE189 /* CoreMIDI.framework */,
 				E1EB28C51AEFE94F0000703A /* prerequisites.txt */,
 				E150C5B61ADC66EA0048900C /* Data */,
 				E1235CAC1AB39AEB001E3E74 /* ZTrackerMacOsXSDL */,
@@ -500,6 +507,8 @@
 				E1CD31961AEEEF5400502FA6 /* WindowsTimer.h */,
 				E1EB28C71AEFEFCE0000703A /* WindowsThreading.cpp */,
 				E1EB28C81AEFEFCE0000703A /* WindowsThreading.h */,
+				E19E63D41AF0400500B1DC2F /* WindowsMidi.mm */,
+				E19E63D51AF0400500B1DC2F /* WindowsMidi.h */,
 			);
 			name = "Windows Wrappers";
 			sourceTree = "<group>";
@@ -653,6 +662,7 @@
 				E1225D0D1AB3AA27004AB741 /* OutputDevices.cpp in Sources */,
 				E1235CB71AB39B05001E3E74 /* mainDeprecated.cpp in Sources */,
 				E1225D0F1AB3AA27004AB741 /* skins.cpp in Sources */,
+				E19E63D61AF0400500B1DC2F /* WindowsMidi.mm in Sources */,
 				E1225CD61AB3A93E004AB741 /* CUI_InstEditor.cpp in Sources */,
 				E1225CEA1AB3A9C1004AB741 /* CUI_Page.cpp in Sources */,
 				E1225D0E1AB3AA27004AB741 /* playback.cpp in Sources */,

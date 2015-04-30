@@ -955,9 +955,12 @@ void encode(char *str, char w[256])
     //return(w);
 }
 
-void setup_midi() {
+void setup_midi()
+{
     char *name, *temp, szKey[256], tt[256];
+    
     conf *Config = zt_globals.Config;
+    
     unsigned int i,j;
     
     //	tt = NULL;

@@ -85,6 +85,7 @@ extern int unlock_mutex(HANDLE hMutex);
 #include "WindowsMessageBox.h"
 #include "WindowsTimer.h"
 #include "WindowsThreading.h"
+#include "WindowsMidi.h"
 
 #include "fxml.h"
 #include "lc_sdl_wrapper.h"      // libCON wrapper
@@ -111,9 +112,6 @@ extern ZTConf zt_globals;
 #include "ColorSet.h"
 
 #include "skins.h"
-
-
-
 
 enum state { STATE_PEDIT, STATE_IEDIT, STATE_PLAY, STATE_LOGO, 
              STATE_ABOUT, STATE_SONG_CONFIG, STATE_SYSTEM_CONFIG,

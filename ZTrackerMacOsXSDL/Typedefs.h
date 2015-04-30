@@ -9,6 +9,7 @@
 #ifndef ZTrackerMacOsXSDL_Typedefs_h
 #define ZTrackerMacOsXSDL_Typedefs_h
 
+
 typedef uint MMRESULT;
 typedef uint UINT;
 typedef uint HANDLE;
@@ -16,7 +17,6 @@ typedef uint DWORD;
 typedef Uint64 __int64;
 
 typedef uint HMIDIOUT;
-typedef uint MIDIOUTCAPS;
 
 typedef char* PSTR, *LPSTR;
 

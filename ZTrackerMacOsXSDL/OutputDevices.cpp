@@ -11,20 +11,21 @@ void AddPlugin(midiOut *mout, OutputDevice *o)
 void InitializePlugins(midiOut *mout)
 {
 
-#warning ROBERT TODO
-
-//#ifdef _ENABLE_AUDIO
-//    AddPlugin(mout, new NoiseOutputDevice());
-//    AddPlugin(mout, new TestToneOutputDevice());
-//#endif
-//    
-//    unsigned int i = mout->numOuputDevices;
-//    unsigned int devs = midiOutGetNumDevs();
-//    unsigned int total = i+devs;
-//    mout->numOuputDevices += devs;
-//    for (;i<total;i++) {
-//        mout->outputDevices[i] = new MidiOutputDevice(i);
-//    }
+#ifdef _ENABLE_AUDIO
+    AddPlugin(mout, new NoiseOutputDevice());
+    AddPlugin(mout, new TestToneOutputDevice());
+#endif
+    
+    unsigned int i = mout->numOuputDevices;
+    unsigned int devs = midiOutGetNumDevs();
+    unsigned int total = i+devs;
+    
+    mout->numOuputDevices += devs;
+    
+    for (; i < total; i++)
+    {
+        mout->outputDevices[i] = new MidiOutputDevice(i);
+    }
 }
 
 
@@ -156,14 +157,15 @@ void NoiseOutputDevice::work( void *udata, Uint8 *stream, int len) {
 
 MidiOutputDevice::MidiOutputDevice(int deviceIndex)
 {
-#warning ROBERT TODO
-//
-//    devNum = deviceIndex;
-//    m_runningStatus = reverse_bank_select = 0;
-//    handle = NULL;
-//    type = OUTPUTDEVICE_TYPE_MIDI;
-//    if (!midiOutGetDevCaps(deviceIndex, &caps, sizeof(MIDIOUTCAPS)))
-//        strcpy(szName, caps.szPname);
+    this->devNum = deviceIndex;
+    this->m_runningStatus = reverse_bank_select = 0;
+    this->handle = NULL;
+    this->type = OUTPUTDEVICE_TYPE_MIDI;
+    
+    if (!midiOutGetDevCaps(deviceIndex, &this->caps, sizeof(MIDIOUTCAPS)))
+    {
+        strcpy(szName, caps.szPname);
+    }
 }
 
 MidiOutputDevice::~MidiOutputDevice()
@@ -173,16 +175,23 @@ MidiOutputDevice::~MidiOutputDevice()
 
 int MidiOutputDevice::open(void)
 {
-#warning ROBERT TODO
     int error;
-//    if (opened) {
-//        if (close())
-//            return -1;
-//    }
-//    if (!(error = midiOutOpen(&handle, devNum, 0, 0, CALLBACK_NULL))) {
-//        opened = 1;
-//        return 0;
-//    }
+    
+    if (opened)
+    {
+        if (close())
+        {
+            return -1;
+        }
+    }
+    
+    if (!(error = midiOutOpen(&handle, devNum, 0, 0, CALLBACK_NULL)))
+    {
+        opened = 1;
+        
+        return 0;
+    }
+    
     return error;
 }
 
@@ -245,47 +254,70 @@ void MidiOutputDevice::send(unsigned int msg)
 //    } 
 }
 
-void MidiOutputDevice::noteOn(unsigned char note, unsigned char chan, unsigned char vol) {
+void MidiOutputDevice::noteOn(unsigned char note, unsigned char chan, unsigned char vol)
+{
 	midiOutMsg( 0x90 + chan, note, vol);
 }
-void MidiOutputDevice::noteOff(unsigned char note, unsigned char chan, unsigned char vol) {
+
+void MidiOutputDevice::noteOff(unsigned char note, unsigned char chan, unsigned char vol)
+{
 	midiOutMsg( 0x80 + chan, note, vol);
 }
-void MidiOutputDevice::afterTouch(unsigned char note, unsigned char chan, unsigned char vol) {
+
+void MidiOutputDevice::afterTouch(unsigned char note, unsigned char chan, unsigned char vol)
+{
 	midiOutMsg( 0xD0 + chan, note, vol);
 }
-void MidiOutputDevice::pitchWheel(unsigned char chan, unsigned short int value) {
+
+void MidiOutputDevice::pitchWheel(unsigned char chan, unsigned short int value)
+{
     unsigned char d1,d2;
-    value&=0x3FFF;
+    
+    value &= 0x3FFF;
+    
     d1 = (value & 0x007F);
     d2 = value>>7;
+    
 	midiOutMsg( 0xE0 + chan, d1, d2);
 
 }
-void MidiOutputDevice::progChange(int program, int bank, unsigned char chan) {
-    if (this->opened) {
+void MidiOutputDevice::progChange(int program, int bank, unsigned char chan)
+{
+    if (this->opened)
+    {
         unsigned short int b;
+        
         unsigned char hb,lb;
-        if (bank>=0) {
+        
+        if (bank >= 0)
+        {
             bank &= 0x3fff;
             lb = bank&0x007F;
             hb = bank>>7;
             b = bank;
-            if (this->reverse_bank_select) {
+            
+            if (this->reverse_bank_select)
+            {
                 // reverse
 				midiOutMsg( 0xB0 + chan, 0x00, lb);
 				midiOutMsg( 0xB0 + chan, 0x20, hb);
-
-            } else {
+            }
+            else
+            {
                 // regular
 				midiOutMsg( 0xB0 + chan, 0x00, hb);
 				midiOutMsg( 0xB0 + chan, 0x20, lb);
             }
         }
-        if (program >= 0) 
+        
+        if (program >= 0)
+        {
 			midiOutMsg( 0xC0 + chan, program, 0x00);
+        }
     }
 }
-void MidiOutputDevice::sendCC(unsigned char cc, unsigned char value,unsigned char chan) {
+
+void MidiOutputDevice::sendCC(unsigned char cc, unsigned char value,unsigned char chan)
+{
 	midiOutMsg( 0xB0 + chan, cc, value);
 }

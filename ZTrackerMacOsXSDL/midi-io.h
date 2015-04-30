@@ -10,15 +10,22 @@
 
 extern int midi_in_clocks_recieved;
 
-class miq {
+class miq
+{
     public:
         miq();
         ~miq();
+    
         void insert(unsigned int msg);
+    
         unsigned int pop(void);
+    
         unsigned int check(void);
+    
         int size(void);
+    
         void clear(void);
+    
     private:
         unsigned int *q;
         int qsize, qhead, qtail, qelems;
@@ -421,13 +428,13 @@ class midiOut {
 
 class midiInDevice {
     public:
-//        HMIDIIN handle;
+        HMIDIIN handle;
         char *szName;
         int devNum;
-//        MIDIINCAPS caps;
+        MIDIINCAPS caps;
         int opened;
 
-//        MIDIHDR         midiHdr;
+        MIDIHDR         midiHdr;
         unsigned char SysXBuffer[256];
         unsigned char SysXFlag;
 
@@ -436,7 +443,7 @@ class midiInDevice {
         
         int open(void);
         int close(void);
-//        MMRESULT reset(void);
+        MMRESULT reset(void);
     
 };
 
@@ -453,7 +460,7 @@ class midiIn {
         int QueryDevice(int dev); // 1 active 0 not active
         int GetNumOpenDevs(void);
         int GetDevID(int which);
-//        midiInDevice *GetDevice(HMIDIIN hmi);
+        midiInDevice *GetDevice(HMIDIIN hmi);
 };
 
 
