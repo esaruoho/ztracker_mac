@@ -9,19 +9,19 @@ But you can also find this, more-up-to-date repo at
 
 in theory, someone could combine them into the future zTracker for macOS / OS X version. Anyway.
 
-## Prerequisites (according to CrossProd)
+## Prerequisites (according to @CrossProd)
+You will need X11 and SDL v1.2
+
 1. X11 installed
-    2.1 Download and install http://xquartz.macosforge.org/landing/
+    1.1 Download and install http://xquartz.macosforge.org/landing/
 
 2. SDL v1.2
     2.1 Download framework from https://www.libsdl.org/download-1.2.php
     2.2 Copy to /Library/Frameworks
 
-
-This should be it for now but I might have overseen something. Please let me know.
+This should be it for now but I might have missed something. Please let me know.
 
 Optional for 32 bit support:
-
 1. Libpng 1.5 is needed. I have included the compiled libs for now so no need to do anything. These only include 64 bit at the moment.
    If needed one can compile 32 bit instead or both
 
