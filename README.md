@@ -9,6 +9,9 @@ But you can also find this, more-up-to-date repo at
 
 in theory, someone could combine them into the future zTracker for macOS / OS X version. Anyway.
 
+## Cheer up, it's not impossible! According to random guy on Facebook.
+*Coding is apparently not required for this project. Cross-platform library is used for system-dependent parts. It's only a matter of compilation SDL (which I did) and the app itself (I didn't go that far). There is a bit of a pain to resolve dependencies, though. I hope you can do it yourself.*
+
 ## Prerequisites (according to @CrossProd)
 You will need X11 and SDL v1.2
 
@@ -71,3 +74,10 @@ Some content excerpted from http://ztracker.sourceforge.net:
 **A:** Ableton Live is great
 **Q:** The ( interface | design | program ) is ( awesome | great | lifechanging )
 **A:** Great! Glad you like it! Thanks!
+
+## zTracker was originally created by:
+cmicali = **Chris Micali** ( http://github.com/cmicali )
+jcl_roolz = **Javier Campos** ( https://sourceforge.net/u/jcl_roolz/profile/ )
+lipid = **Austin Luminais** ( https://sourceforge.net/u/lipid/profile/ )
+tlr = **Daniel Kahlin** ( https://sourceforge.net/u/tlr/profile/ )
+
