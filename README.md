@@ -1,9 +1,32 @@
 # zTracker for macOS / OS X
 
-
 A port of cmicali's zTracker (originally available for Windows only) - port started by CrossProd but then I guess it never finished.
 
+You can find the original repo at 
 * https://github.com/cmicali/ztracker
+But you can also find this, more-up-to-date repo at
+* https://github.com/m6502/ztrackerprime/
+
+in theory, someone could combine them into the future zTracker for macOS / OS X version. Anyway.
+
+## Prerequisites (according to CrossProd)
+1. X11 installed
+    2.1 Download and install http://xquartz.macosforge.org/landing/
+
+2. SDL v1.2
+    2.1 Download framework from https://www.libsdl.org/download-1.2.php
+    2.2 Copy to /Library/Frameworks
+
+
+This should be it for now but I might have overseen something. Please let me know.
+
+Optional for 32 bit support:
+
+1. Libpng 1.5 is needed. I have included the compiled libs for now so no need to do anything. These only include 64 bit at the moment.
+   If needed one can compile 32 bit instead or both
+
+
+## zTracker.sourceforge.net historical writeup: description
 
 cmicali described his zTracker like this:
 **zTracker is a win32 only MIDI tracker/sequencer modeled after Impulse Tracker.
@@ -11,8 +34,8 @@ The project is currently closed but the source is archived here.**
 
 Some content excerpted from http://ztracker.sourceforge.net:
 **A win32 MIDI tracker being developed in C++ (MSVC6) using SDL. Interface is almost 1:1 clone of the popular Impulse Tracker DOS tracking software. Multiple out-devices, 64 midi tracks (expandable to 256), .mid export, parameter drawing, 96ppqn, and muc**
-
 ## zTracker.sourceforge.net historical writeup: Features
+
 
 * 1:1 copy of Impulse Tracker interface
 * 64 track sequencer with variable 32-256 rows/pattern, 256 total patterns
