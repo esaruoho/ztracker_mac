@@ -80,9 +80,18 @@ Some content excerpted from http://ztracker.sourceforge.net:
 **Q:** The ( interface | design | program ) is ( awesome | great | lifechanging )
 **A:** Great! Glad you like it! Thanks!
 
-## zTracker was originally created by:
+## zTracker was originally created, maintained and supported by:
 cmicali = **Chris Micali** ( http://github.com/cmicali )
 jcl_roolz = **Javier Campos** ( https://sourceforge.net/u/jcl_roolz/profile/ )
 lipid = **Austin Luminais** ( https://sourceforge.net/u/lipid/profile/ )
 tlr = **Daniel Kahlin** ( https://sourceforge.net/u/tlr/profile/ )
+zonaj = **Nicolas Soudee**
 
+## Legacy discussion channels on sourceforge:
+- zTracker news written by cmicali: https://sourceforge.net/p/ztracker/news/
+- zTracker Tickets: Feature Requests: https://sourceforge.net/p/ztracker/feature-requests/
+- zTracker Tickets: Bugs: https://sourceforge.net/p/ztracker/bugs/?source=navbar
+- zTracker Forum: Open Discussion: https://sourceforge.net/p/ztracker/discussion/26003/
+- zTracker Forum: Help: https://sourceforge.net/p/ztracker/discussion/26004/
+- zTracker Forum: Open Discussion: ZT2IT post: https://sourceforge.net/p/ztracker/discussion/26003/thread/e726d28f/     
+    - http://web.archive.org/web/20090108050237/www.hukka.furtopia.org/projects/zt2it/
