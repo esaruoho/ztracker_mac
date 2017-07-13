@@ -59,25 +59,45 @@ Some content excerpted from http://ztracker.sourceforge.net:
 ## zTracker.sourceforge.net historical writeup: FAQ
 
 **Q:** Who is responsible for this?
+
 **A:** Chris Micali, Nicolas Soudee, Austin Luminais and Daniel Kahlin.
+
 **Q:** Why are there so many bugs.. this thing sucks, I cant use this to make music!
+
 **A:** Lots of people already do. We do. If it doesnt work for you, use something else, or better, download the source, fix it and make it suite you, then send us the changes.
+
 **Q:** What is the deal with this.. how is it being done?
+
 **A:** zt is written in C++ with MSVC7. It uses the great libSDL. It runs in any 32bit resolution equal to or larger than 640x480, but it loads impulse tracker fonts and using custom font routines, it tries to trick you into thinking you're in text mode. Why? We're stuck in the past.
+
 **Q:** Will there be sample support? When will it be implemented??
+
 **A:** There will never be sample support. You can use a sampler, or use virtual sampler w/ an ASIO card. If we wanted sampling ability, we'd be using buzz.
+
 **Q:** Where can I get the source code?
+
 **A:** https://github.com/cmicali/ztracker
+
 **Q:** What do I need to use zt?
+
 **A:** Any modern PC running windows.
+
 **Q:** How can I help?
+
 **A:** The project is closed now, but you can always make some nice music.
+
 **Q:** How do I use zt?
+
 **A:** Check the PDF manual included in the download.
+
 **Q:** The ( interface | design | program ) is ( ugly | lame | slow | poor | unusable )
+
 **A:** Ableton Live is great
+
 **Q:** The ( interface | design | program ) is ( awesome | great | lifechanging )
+
 **A:** Great! Glad you like it! Thanks!
+
 
 ## zTracker was originally created, maintained and supported by:
 cmicali = **Chris Micali** ( http://github.com/cmicali )
@@ -93,7 +113,7 @@ zonaj = **Nicolas Soudee**
 
 ## Legacy discussion channels on sourceforge:
 - zTracker news written by cmicali: https://sourceforge.net/p/ztracker/news/
-- zTracker Tickets: Feature Requests: https://sourceforge.net/p/ztracker/feature-requests/
+- zTracker Tickets: Feature Requests: https://sourceforge.net/p/ztracker/feature-requests/?limit=250
 - zTracker Tickets: Bugs: https://sourceforge.net/p/ztracker/bugs/?source=navbar
 - zTracker Forum: Open Discussion: https://sourceforge.net/p/ztracker/discussion/26003/
 - zTracker Forum: Help: https://sourceforge.net/p/ztracker/discussion/26004/
