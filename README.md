@@ -1,6 +1,6 @@
 # zTracker for macOS / OS X
 
-A port of cmicali's zTracker (originally available for Windows only) - port started by CrossProd but then I guess it never finished.
+A port of cmicali's zTracker (originally available for Windows only) - port started by [CrossProd](https://github.com/CrossProd) but then I guess it never finished.
 
 You can find the original repo at 
 * https://github.com/cmicali/ztracker
@@ -12,7 +12,7 @@ in theory, someone could combine them into the future zTracker for macOS / OS X 
 ## Cheer up, it's not impossible! According to random guy on Facebook.
 *Coding is apparently not required for this project. Cross-platform library is used for system-dependent parts. It's only a matter of compilation SDL (which I did) and the app itself (I didn't go that far). There is a bit of a pain to resolve dependencies, though. I hope you can do it yourself.*
 
-## Prerequisites (according to @CrossProd)
+## Prerequisites (according to [CrossProd](https://github.com/CrossProd))
 You will need X11 and SDL v1.2
 
 1. X11 installed
@@ -20,13 +20,18 @@ You will need X11 and SDL v1.2
 
 2. SDL v1.2
     2.1 Download framework from https://www.libsdl.org/download-1.2.php
-    2.2 Copy to /Library/Frameworks
-
+    2.2 Copy to /Library/Frameworks
+```
+brew install sdl 
+```
 This should be it for now but I might have missed something. Please let me know.
 
 Optional for 32 bit support:
 1. Libpng 1.5 is needed. I have included the compiled libs for now so no need to do anything. These only include 64 bit at the moment.
-   If needed one can compile 32 bit instead or both
+   If needed one can compile 32 bit instead or both
+```
+brew install libpng
+```
 
 
 ## zTracker.sourceforge.net historical writeup: description
