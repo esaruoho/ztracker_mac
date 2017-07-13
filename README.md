@@ -15,20 +15,19 @@ in theory, someone could combine them into the future zTracker for macOS / OS X 
 ## Prerequisites (according to [CrossProd](https://github.com/CrossProd))
 You will need X11 and SDL v1.2
 
-1. X11 installed
-    1.1 Download and install http://xquartz.macosforge.org/landing/
-
-2. SDL v1.2
-    2.1 Download framework from https://www.libsdl.org/download-1.2.php
-    2.2 Copy to /Library/Frameworks
+- 1. X11 installed
+- 1.1 Download and install http://xquartz.macosforge.org/landing/
+- 2. SDL v1.2
+- 2.1 Download framework from https://www.libsdl.org/download-1.2.php
+- 2.2 Copy to /Library/Frameworks
 ```
 brew install sdl 
 ```
 This should be it for now but I might have missed something. Please let me know.
 
 Optional for 32 bit support:
-1. Libpng 1.5 is needed. I have included the compiled libs for now so no need to do anything. These only include 64 bit at the moment.
-   If needed one can compile 32 bit instead or both
+- Libpng 1.5 is needed. I have included the compiled libs for now so no need to do anything. These only include 64 bit at the moment.
+If needed one can compile 32 bit instead or both
 ```
 brew install libpng
 ```
@@ -82,10 +81,15 @@ Some content excerpted from http://ztracker.sourceforge.net:
 
 ## zTracker was originally created, maintained and supported by:
 cmicali = **Chris Micali** ( http://github.com/cmicali )
+
 jcl_roolz = **Javier Campos** ( https://sourceforge.net/u/jcl_roolz/profile/ )
+
 lipid = **Austin Luminais** ( https://sourceforge.net/u/lipid/profile/ )
+
 tlr = **Daniel Kahlin** ( https://sourceforge.net/u/tlr/profile/ )
+
 zonaj = **Nicolas Soudee**
+
 
 ## Legacy discussion channels on sourceforge:
 - zTracker news written by cmicali: https://sourceforge.net/p/ztracker/news/
