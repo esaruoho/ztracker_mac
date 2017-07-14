@@ -190,8 +190,7 @@ done:	/* Clean up and return */
 	return(surface); 
 }
 
-
-SDL_Surface *IMG_DoLoad(SDL_RWops *src, int freesrc, char *type)
+SDL_Surface *IMG_DoLoad(SDL_RWops *src, int freesrc, const char *type)
 {
 	int start;
 	SDL_Surface *image;
@@ -219,7 +218,7 @@ SDL_Surface *IMG_DoLoad(SDL_RWops *src, int freesrc, char *type)
 SDL_Surface *SDL_LoadPNG(const char *file)
 {
     SDL_RWops *src = SDL_RWFromFile(file, "rb");
-    char *ext = strrchr(file, '.');
+    const char *ext = strrchr(file, '.');
     if(ext)
         ext++;
     return IMG_DoLoad(src, 1, ext);
