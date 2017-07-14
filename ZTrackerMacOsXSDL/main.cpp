@@ -316,7 +316,7 @@ char *hex2note(char *str,unsigned char note) {   /* Thanks to FSM for great idea
     }
     return str;
 }
-void fadeOut(float step, Screen *S) {
+void fadeOut(float step, ZTScreen *S) {
     /*
      for (float f=1;f>0;f-=step) {
      S->setGammaFade(f,f,f);
@@ -324,7 +324,7 @@ void fadeOut(float step, Screen *S) {
      }
      */
 }
-void fadeIn(float step, Screen *S) {
+void fadeIn(float step, ZTScreen *S) {
     /*
      for (float f=0;f<=1;f+=step) {
      S->setGammaFade(f,f,f);
@@ -332,7 +332,7 @@ void fadeIn(float step, Screen *S) {
      }
      */
 }
-void setGamma(float f, Screen *S) {
+void setGamma(float f, ZTScreen *S) {
     //    S->setGammaFade(f,f,f);
 }
 
