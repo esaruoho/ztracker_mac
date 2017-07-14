@@ -221,7 +221,7 @@ SDL_Surface *SDL_LoadPNG(const char *file)
     SDL_RWops *src = SDL_RWFromFile(file, "rb");
     char *ext = strrchr(file, '.');
     if(ext)
-	ext++;
+        ext++;
     return IMG_DoLoad(src, 1, ext);
 }
 
