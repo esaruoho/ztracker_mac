@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		905CF6F51F18E409001F0EA5 /* libSDL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 905CF6F41F18E409001F0EA5 /* libSDL.a */; };
+		905CF6F71F18E41A001F0EA5 /* libSDLmain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 905CF6F61F18E419001F0EA5 /* libSDLmain.a */; };
 		E10BE98B1ADC5824007D2DD7 /* img.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1225CF41AB3AA27004AB741 /* img.cpp */; };
-		E10BE98F1ADC607E007D2DD7 /* libpng15.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E10BE98E1ADC607E007D2DD7 /* libpng15.a */; };
-		E10BE9951ADC6253007D2DD7 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10BE9941ADC6253007D2DD7 /* SDL.framework */; };
 		E1225CD21AB3A809004AB741 /* CUI_Arpeggioeditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1235CBE1AB39BF0001E3E74 /* CUI_Arpeggioeditor.cpp */; };
 		E1225CD31AB3A922004AB741 /* CUI_About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1235CBD1AB39BF0001E3E74 /* CUI_About.cpp */; };
 		E1225CD41AB3A930004AB741 /* CUI_Config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1235CBF1AB39BF0001E3E74 /* CUI_Config.cpp */; };
@@ -126,9 +126,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E10BE98E1ADC607E007D2DD7 /* libpng15.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng15.a; sourceTree = "<group>"; };
-		E10BE9901ADC6092007D2DD7 /* libpng15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libpng15.dylib; sourceTree = "<group>"; };
-		E10BE9941ADC6253007D2DD7 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		905CF6F41F18E409001F0EA5 /* libSDL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDL.a; path = ../../../../usr/local/Cellar/sdl/1.2.15/lib/libSDL.a; sourceTree = "<group>"; };
+		905CF6F61F18E419001F0EA5 /* libSDLmain.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSDLmain.a; path = ../../../../usr/local/Cellar/sdl/1.2.15/lib/libSDLmain.a; sourceTree = "<group>"; };
 		E10BE9961ADC6422007D2DD7 /* zt.conf */ = {isa = PBXFileReference; lastKnownFileType = text; path = zt.conf; sourceTree = "<group>"; };
 		E1225CEC1AB3AA01004AB741 /* CDataBuf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDataBuf.cpp; sourceTree = "<group>"; };
 		E1225CED1AB3AA01004AB741 /* conf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = conf.cpp; sourceTree = "<group>"; };
@@ -257,14 +256,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1DA86411AF17F1F005FE189 /* CoreMIDI.framework in Frameworks */,
-				E10BE9951ADC6253007D2DD7 /* SDL.framework in Frameworks */,
-				E10BE98F1ADC607E007D2DD7 /* libpng15.a in Frameworks */,
+				905CF6F71F18E41A001F0EA5 /* libSDLmain.a in Frameworks */,
+				905CF6F51F18E409001F0EA5 /* libSDL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		905CF6F81F18E43A001F0EA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E1225CEB1AB3A9F5004AB741 /* Temp */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +329,7 @@
 				E150C5B61ADC66EA0048900C /* Data */,
 				E1235CAC1AB39AEB001E3E74 /* ZTrackerMacOsXSDL */,
 				E1235CAB1AB39AEB001E3E74 /* Products */,
+				905CF6F81F18E43A001F0EA5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -396,7 +403,6 @@
 		E150C5B71ADC66F80048900C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E10BE9941ADC6253007D2DD7 /* SDL.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,8 +522,8 @@
 		E1EB28C41AEFE8F10000703A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				E10BE9901ADC6092007D2DD7 /* libpng15.dylib */,
-				E10BE98E1ADC607E007D2DD7 /* libpng15.a */,
+				905CF6F41F18E409001F0EA5 /* libSDL.a */,
+				905CF6F61F18E419001F0EA5 /* libSDLmain.a */,
 			);
 			name = Libs;
 			path = ..;
@@ -765,14 +771,26 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/opt/X11/include,
+					sdl/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/usr/local/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lpng15",
+					"-L/usr/local/lib",
+					/usr/local/lib/libSDLmain.a,
+					/usr/local/lib/libSDL.a,
+					"-Wl,-framework,OpenGL",
+					"-Wl,-framework,Cocoa",
+					"-Wl,-framework,ApplicationServices",
+					"-Wl,-framework,Carbon",
+					"-Wl,-framework,AudioToolbox",
+					"-Wl,-framework,AudioUnit",
+					"-Wl,-framework,IOKit",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = x86_64;
@@ -792,14 +810,26 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/opt/X11/include,
+					sdl/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/usr/local/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lpng15",
+					"-L/usr/local/lib",
+					/usr/local/lib/libSDLmain.a,
+					/usr/local/lib/libSDL.a,
+					"-Wl,-framework,OpenGL",
+					"-Wl,-framework,Cocoa",
+					"-Wl,-framework,ApplicationServices",
+					"-Wl,-framework,Carbon",
+					"-Wl,-framework,AudioToolbox",
+					"-Wl,-framework,AudioUnit",
+					"-Wl,-framework,IOKit",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = x86_64;
